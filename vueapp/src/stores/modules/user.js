@@ -1,6 +1,7 @@
 import {make} from "vuex-pathify";
 
 const state = {
+    user : null,
     username: "John Doe",
     loginForm: {
         username: "",
@@ -14,9 +15,14 @@ const mutations = {
 const actions = {
 
     login: async function ({state}, event) {
-        console.log(state.loginForm);
-        //return {username : 'xxx'}
-        return false;
+        let result = axios.post("/api/login",state.loginForm).then((r)=>{
+            state.user = r.data;
+            return r.data;
+        }).catch((err) => {
+            //handle error
+        })
+
+        return result;
     },
     alertUsername: function ({state}, data) {
         alert(state.username);
