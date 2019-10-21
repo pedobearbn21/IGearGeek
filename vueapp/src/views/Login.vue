@@ -16,7 +16,7 @@ export default {
   },
   data: () => ({
     myusername: "TEST",
-    mytext: "TEST"
+    mytext: "TEST",
   }),
   methods: {
     ...call("user/*"),

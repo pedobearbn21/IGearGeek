@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>Login</h1>
-    username : <input type="text" v-model="loginForm.username" /><br />
+    username : <input type="text" v-model="loginForm.email" /><br />
     password : <input type="password" v-model="loginForm.password" /><br />
     <button type="button" @click="btnLoginClick">Login</button>
   </div>
@@ -22,7 +22,6 @@ export default {
     ...call("user/*"),
     btnLoginClick: async function() {
       let result = await this.login();
-      console.log(result);
       if (result) {
         alert("login สำเร็จ");
         this.$router.push({ name: "home" });

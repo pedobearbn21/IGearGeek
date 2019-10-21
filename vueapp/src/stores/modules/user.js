@@ -4,7 +4,7 @@ const state = {
   user: null,
   username: "John Doe",
   loginForm: {
-    username: "",
+    email: "",
     password: ""
   }
 };
@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   login: async function({ state }, event) {
     let result = axios
-      .post("/api/login", state.loginForm)
+      .post("http://localhost:8000/api/auth/login", state.loginForm)
       .then(r => {
         state.user = r.data;
         return r.data;

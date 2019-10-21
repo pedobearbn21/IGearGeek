@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ username }}</p>
+    <p>{{ user.name }}</p>
   </div>
 </template>
 
@@ -13,7 +13,8 @@ export default {
     msg: String
   },
   computed: {
-    username: sync("user/username")
+    ...sync("user/*")
+    // username: sync("user/username")
   }
 };
 </script>
