@@ -25,6 +25,17 @@ const actions = {
 
     return result;
   },
+  register: async function({ state }, dataform) {
+    let result = axios
+      .post("http://localhost:8000/api/auth/register", dataform)
+      .then(r => {
+        console.log(r);
+      })
+      .catch(err => {
+        //error
+      });
+    return result;
+  },
   alertUsername: function({ state }, data) {
     alert(state.username);
   },
