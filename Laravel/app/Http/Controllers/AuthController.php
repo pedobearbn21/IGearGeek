@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Role;
+use Laratrust\Traits\LaratrustUserTrait;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
+    use LaratrustUserTrait;
+
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
                      'name' => 'required',
@@ -25,6 +30,9 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
         $user->save();
+        $owner = Role::find(1);
+        $user->attachRole($owner->id);
+        dd($user);
         return $user;
        }
 
@@ -34,6 +42,7 @@ class AuthController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('token')-> accessToken;
+            dd($user->hasRole('owner'));
             return $user;
         }
         else{

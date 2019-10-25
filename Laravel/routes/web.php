@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return 'rest';
 });
+Route::get('/createrole','RoleandPermissionController@createrole');
+Route::get('/createper','RoleandPermissionController@createpermission');
