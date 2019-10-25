@@ -17,10 +17,11 @@ const actions = {
       .post("http://localhost:8000/api/auth/login", state.loginForm)
       .then(r => {
         state.user = r.data;
+        console.log(state.user);
         return r.data;
       })
       .catch(err => {
-        //handle error
+        console.log(err);
       });
 
     return result;
@@ -32,7 +33,7 @@ const actions = {
         console.log(r);
       })
       .catch(err => {
-        //error
+        console.log(err);
       });
     return result;
   },
