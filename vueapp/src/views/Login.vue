@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login</h1>
-    username : <input type="text" v-model="loginForm.username" /><br />
+    username : <input type="email" v-model="loginForm.email" /><br />
     password : <input type="password" v-model="loginForm.password" /><br />
     <button type="button" @click="btnLoginClick">Login</button>
   </div>

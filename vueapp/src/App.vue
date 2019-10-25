@@ -10,22 +10,29 @@
       <router-link to="/about">About</router-link>
     </v-app-bar>
 
-    <v-content class="text-center">
+    <v-content class="text-center" v-if="user">
       <router-view></router-view>
+    </v-content>
+    <v-content class="text-center" v-else>
+      <LoginComp></LoginComp>
     </v-content>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld";
+import LoginComp from "./views/Login";
+import { sync, call } from "vuex-pathify";
+
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
+    LoginComp
   },
-  data: () => ({
-    //
-  })
+  computed: {
+    ...sync("user/*")
+  }
 };
 </script>
