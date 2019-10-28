@@ -7,14 +7,12 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/register">register</router-link>
     </v-app-bar>
 
-    <v-content class="text-center" v-if="user">
+    <v-content class="text-center">
       <router-view></router-view>
-    </v-content>
-    <v-content class="text-center" v-else>
-      <LoginComp></LoginComp>
     </v-content>
   </v-app>
 </template>
@@ -27,12 +25,17 @@ import { sync, call } from "vuex-pathify";
 
 export default {
   name: "App",
+  mounted() {
+  },
   components: {
     HelloWorld,
     LoginComp
   },
   computed: {
     ...sync("user/*")
-  }
+  },
+  methods: {
+    ...call("user/*"),
+  },
 };
 </script>
