@@ -68,7 +68,6 @@ export default {
   methods: {
     ...call("user/*"),
     signup: async function(){
-        console.log(this.form);
         let register = await this.register(this.form);
         if( register ){
             alert('Register Success');

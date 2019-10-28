@@ -32,7 +32,6 @@ class AuthController extends Controller
         $user->save();
         $owner = Role::find(1);
         $user->attachRole($owner->id);
-        dd($user);
         return $user;
        }
 
@@ -44,7 +43,7 @@ class AuthController extends Controller
             $success['token'] =  $user->createToken('token')-> accessToken;
             $role = DB::table('role_user')->where('user_id', '=', $user->id)->get();
             $data = DB::table('roles')->where('id', '=', $role[0]->role_id)->get();
-            return response()->json(['user'=>$user,'role'=>$data[0]->name]);
+            return response()->json(['user'=>$user,'role'=>$data[0]->name,'token'=>$success]);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
