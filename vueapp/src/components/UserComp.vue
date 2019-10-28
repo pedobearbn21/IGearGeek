@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ user.user.name }}</p>
+    <p>{{ user.name }}</p>
     <p>Role:{{ user.role }}</p>
     <div v-if='user.role == `owner`'>
       owner success

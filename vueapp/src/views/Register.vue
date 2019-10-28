@@ -68,13 +68,8 @@ export default {
   methods: {
     ...call("user/*"),
     signup: async function(){
-        let register = await this.register(this.form);
-        if( register ){
-            alert('Register Success');
-        }
-        else {
-            alert('Register Failed');
-        }
+        let registerdata = await this.register(this.form);
+        this.$router.push({ name: "login" });
     }
   }
 
