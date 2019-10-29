@@ -19,9 +19,6 @@ const actions = {
       .then(r => {
         state.user = r.data;
         localStorage.setItem('user', JSON.stringify(r.data));
-        // state.token = r.data.token.token;
-        // console.log('Bearer '+ state.token);
-        // localStorage.setItem('token', r.data.token.token);
         return r.data;
       })
       .catch(err => {
@@ -42,12 +39,17 @@ const actions = {
         console.log(err);
       });
   },
-  alertUsername: function({ state }, data) {
-    alert(state.username);
-  },
-  alertSomething: function({}, { text }) {
-    alert(text);
-    state.username = text;
+  logouted: async function({ state }) {
+    let a = await localStorage.removeItem('user');
+    state.user = null;
+    // let result = axios
+    //   .post("http://localhost:8000/api/auth/logout")
+    //   .then(r => {
+    //     return true;
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   },
   logged: () => {
     state.user = JSON.parse(localStorage.getItem('user'));
