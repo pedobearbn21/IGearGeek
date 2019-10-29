@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
+      <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>IGEARGEEK</span>
         <span class="font-weight-light"></span>
