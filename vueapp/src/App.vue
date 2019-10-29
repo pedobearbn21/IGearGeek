@@ -7,6 +7,8 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <router-link to="/">Home</router-link> |
+      <router-link to="/onleave">Onleave</router-link> |
+      <router-link to="/late">Late</router-link> |
       <router-link to="/login">login</router-link> |
       <router-link to="/register">register</router-link> |
       <router-link to="/"><button @click="logout">logout</button></router-link>

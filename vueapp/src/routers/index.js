@@ -26,7 +26,18 @@ export default new Router({
           component: () =>
             import(/* webpackChunkName: "about" */ "@/views/About.vue")
         },
-
+        {
+          path: "onleave",
+          name: "onleave",
+          component: () =>
+            import(/* webpackChunkName: "about" */ "@/views/Onleave.vue")
+        },
+        {
+          path: "late",
+          name: "late",
+          component: () =>
+            import(/* webpackChunkName: "about" */ "@/views/Late.vue")
+        },
         {
           path: "register",
           name: "register",
