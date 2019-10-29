@@ -2,12 +2,12 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>IGEARGEEK</span>
+        <span class="font-weight-light"></span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/login">login</router-link> |
       <router-link to="/register">register</router-link>
     </v-app-bar>
 

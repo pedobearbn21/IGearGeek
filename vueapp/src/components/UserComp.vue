@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>{{ user.name }}</p>
+  <div v-if="user">
+    <p>{{ user.user.name }}</p>
     <p>Role:{{ user.role }}</p>
     <div v-if='user.role == `owner`'>
       owner success
@@ -16,9 +16,15 @@ export default {
   props: {
     msg: String
   },
+  created() {
+    this.logged();
+  },
   computed: {
-    ...sync("user/*")
+    ...sync("user/*"),
     // username: sync("user/username")
-  }
+  },
+  methods: {
+    ...call("user/*"),
+  },
 };
 </script>

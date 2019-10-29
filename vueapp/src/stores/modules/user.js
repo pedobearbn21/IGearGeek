@@ -6,7 +6,8 @@ const state = {
   loginForm: {
     email: "",
     password: ""
-  }
+  },
+  token: ""
 };
 const mutations = {
   ...make.mutations(state)
@@ -17,7 +18,10 @@ const actions = {
       .post("http://localhost:8000/api/auth/login", state.loginForm)
       .then(r => {
         state.user = r.data;
-        console.log(state.user);
+        localStorage.setItem('user', JSON.stringify(r.data));
+        // state.token = r.data.token.token;
+        // console.log('Bearer '+ state.token);
+        // localStorage.setItem('token', r.data.token.token);
         return r.data;
       })
       .catch(err => {
@@ -30,12 +34,13 @@ const actions = {
     let result = axios
       .post("http://localhost:8000/api/auth/register", dataform)
       .then(r => {
-        console.log(r);
+        console.log(r.data);
+        state.user = r.data;
+        return r.data;
       })
       .catch(err => {
         console.log(err);
       });
-    return result;
   },
   alertUsername: function({ state }, data) {
     alert(state.username);
@@ -43,6 +48,10 @@ const actions = {
   alertSomething: function({}, { text }) {
     alert(text);
     state.username = text;
+  },
+  logged: () => {
+    state.user = JSON.parse(localStorage.getItem('user'));
+    console.log(state.user);
   }
 };
 const getters = {};
