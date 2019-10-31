@@ -1,10 +1,12 @@
 <template>
     <v-container>
         ส่งคำขอลา
+        {{user.user.name}}
         <v-row>
             <div class="col">
                 <v-select
                     :items="items"
+                    v-model="form.type"
                     label="ประเภทการลา"
                     outlined
                 ></v-select>
@@ -15,13 +17,13 @@
                 <v-dialog
                     ref="dialog"
                     v-model="modal"
-                    :return-value.sync="date"
+                    :return-value.sync="form.date"
                     persistent
                     width="290px"
                 >
                     <template v-slot:activator="{ on }">
                     <v-text-field
-                        v-model="date"
+                        v-model="form.date"
                         label="Picker A Date"
                         append-icon="mdi-calendar"
                         readonly
@@ -34,11 +36,11 @@
                         year-icon="mdi-calendar-blank"
                         prev-icon="mdi-skip-previous"
                         next-icon="mdi-skip-next"
-                        v-model="date" 
+                        v-model="form.date" 
                         scrollable>
                     <v-spacer></v-spacer>
                         <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(form.date)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
             </v-col>
@@ -48,13 +50,13 @@
             <v-dialog
                 ref="dialog2"
                 v-model="modal2"
-                :return-value.sync="date1"
+                :return-value.sync="form.date1"
                 persistent
                 width="290px"
             >
                 <template v-slot:activator="{ on }">
                 <v-text-field
-                    v-model="date1"
+                    v-model="form.date1"
                     label="Picker A Date"
                     append-icon="mdi-calendar"
                     readonly
@@ -66,18 +68,18 @@
                 year-icon="mdi-calendar-blank"
                 prev-icon="mdi-skip-previous"
                 next-icon="mdi-skip-next"
-                v-model="date1" 
+                v-model="form.date1" 
                 scrollable>
                 <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-                    <v-btn text color="primary" @click="$refs.dialog2.save(date1)">OK</v-btn>
+                    <v-btn text color="primary" @click="$refs.dialog2.save(form.date1)">OK</v-btn>
                 </v-date-picker>
             </v-dialog>
             </v-col>
         </v-row>
         <v-row>
             <v-col class="col">
-                <v-file-input label="File input"  outlined dense></v-file-input>
+                <v-file-input ref="file-input"  label="File input" v-on:change='onImageChange'   outlined dense></v-file-input>
                 <!-- <v-btn rounded color="primary" type='file' dark>Rounded Button</v-btn> -->
             </v-col>
         </v-row>
@@ -86,7 +88,7 @@
             <v-textarea
                 name="input-7-1"
                 label="Description"
-                v-model="textarea"
+                v-model="form.textarea"
                 rows="1"
                 auto-grow   
             ></v-textarea>
@@ -94,23 +96,70 @@
         </v-row>
         <v-row justify='center' align="center">
             <v-btn-toggle>
-                <v-btn color="primary">Cancel</v-btn>
-                <v-btn color="primary">Submit</v-btn>
+                <v-btn color="primary" @click="back">Cancel</v-btn>
+                <v-btn color="primary" @change="ConfirmForm">Submit</v-btn>
             </v-btn-toggle>
         </v-row>
     </v-container>
 </template>
 
 <script>
+import { sync, call, dispatch } from "vuex-pathify";
+import axios from 'axios';
 export default {
     data() {
         return {
+            form: {
+                type:'',
+                date: '',
+                date1: '',
+                textarea: '',
+                file: null
+            },
             items: ['a','b','c'],
-            date: '',
-            date1: '',
             modal: false,
             modal2: false,
-            textarea: ''
+            image: '',
+        }
+    },
+    computed: {
+    ...sync("user/*")
+    },
+    methods: {
+        back(){
+            this.$router.go(-1)
+        },
+        onImageChange(e){
+                console.log(e);
+                this.image = e;
+        },
+        ConfirmForm(){
+            // let requestdata = {
+            //     id: this.user.user.id,
+            //     start_date: this.form.date,
+            //     end_date: this.form.date1,
+            //     type: this.form.type,
+            //     description: this.form.textarea,
+            //     file:this.image,
+            // }
+            let currentObj = this;
+ 
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+
+            let formData = new FormData();
+            formData.append('file', this.image);
+            let result = axios
+              .post("http://localhost:8000/api/report",formData )
+              .then(r => {
+                console.log(r);
+                return r;
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            
         }
     },
 

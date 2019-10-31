@@ -19,3 +19,4 @@ Route::get('/test', function () {
 });
 Route::get('/createrole','RoleandPermissionController@createrole');
 Route::get('/createper','RoleandPermissionController@createpermission');
+

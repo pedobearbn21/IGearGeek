@@ -13,7 +13,7 @@ class Onleave extends Migration
      */
     public function up()
     {
-        Schema::create('onleave', function (Blueprint $table){
+        Schema::create('onleaves', function (Blueprint $table){
             $table->increments('id');
             $table->Integer('employee_id');
             $table->date('start_date');

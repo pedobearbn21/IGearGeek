@@ -9,18 +9,49 @@ use App\Models\Onleaves;
 class OnleaveController extends Controller
 {
     public function savereport(Request $request){
-        $onleaves = new Onleaves([
-            'employee_id' => Auth::user()->id,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'type' => $request->type,
-            'status' => $request->status,
-            'file' => $request->file,
-            'description' => $request->description
-        ]);
-        $onleaves->save();
-        return $onleaves;
+        // $onleaves = new Onleaves([
+        //     'employee_id' => $request->id,
+        //     'start_date' => $request->start_date,
+        //     'end_date' => $request->end_date,
+        //     'type' => $request->type,
+        //     'status' => $request->status,
+        //     'file' => $request->file,
+        //     'description' => $request->description
+        // ]);
+        // dd($request);
+
+    	$imageName = time().'.'.$request->file->getClientOriginalExtension();
+        $request->file->move(public_path('upload/user'), $imageName);
+
+    	return response()->json(['success'=>'You have successfully upload image.']);
+        $res = $this->uploadImage($request);
+        // $onleaves->save();
+        // return $onleaves;
+        return $res;
     }
+
+    public function uploadImage(Request $request)
+    {
+
+        $response = null;
+        $user = (object) ['file' => ""];
+        if ($request->hasFile('file')) {
+            $original_filename = $request->file('file')->getClientOriginalName();
+            $original_filename_arr = explode('.', $original_filename);
+            $file_ext = end($original_filename_arr);
+            $destination_path = './upload/user/';
+            $image = 'U-' . time() . '.' . $file_ext;
+            if ($request->file('file')->move($destination_path, $image)) {
+                $user->image = '/upload/user/' . $image;
+                return $user;
+            } else {
+                return 'Cannot upload file';
+            }
+        } else {
+            return 'File not found';
+        }
+    }
+
 
     public function getallreport() {
         $allreport = Onleaves::all();
@@ -28,7 +59,7 @@ class OnleaveController extends Controller
     }
 
     public function getreportbyuser(){
-        $report = Onleaves::find(Auth::user()->id);
+        $report = Onleave::find(Auth::user()->id);
         return $report;
     }
 }

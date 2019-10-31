@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/abc', function(){
     return '1';
 });
+Route::post('/report','OnleaveController@savereport');
+Route::post('/upload', 'OnleaveController@uploadImage');
 Route::group([
     'prefix' => 'auth'
 ], function () {

@@ -8,7 +8,6 @@ import axios from "axios";
 import vuetify from "./plugins/vuetify";
 
 window.axios = axios;
-
 Vue.config.productionTip = false;
 
 new Vue({
