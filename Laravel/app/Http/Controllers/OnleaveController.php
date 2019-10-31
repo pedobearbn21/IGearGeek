@@ -20,10 +20,15 @@ class OnleaveController extends Controller
         // ]);
         // dd($request);
 
-    	$imageName = time().'.'.$request->file->getClientOriginalExtension();
-        $request->file->move(public_path('upload/user'), $imageName);
-
-    	return response()->json(['success'=>'You have successfully upload image.']);
+        // $imageName = time().'.'.$request->file->getClientOriginalExtension();
+        // $request->file->move(public_path('upload/user'), $imageName);
+        $original_filename = $request->file->getClientOriginalName();
+        $original_filename_arr = explode('.', $original_filename);
+        $file_ext = end($original_filename_arr);
+        $image = 'U-' . time() . '.' . $file_ext;
+        $destination_path = './upload/user/';
+        $request->file->move($destination_path, $image);
+    	return response()->json(['path'=> '/upload/user/'.$image]);
         $res = $this->uploadImage($request);
         // $onleaves->save();
         // return $onleaves;

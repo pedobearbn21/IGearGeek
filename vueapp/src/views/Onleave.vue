@@ -100,6 +100,9 @@
                 <v-btn color="primary" @change="ConfirmForm">Submit</v-btn>
             </v-btn-toggle>
         </v-row>
+        <div v-if="path">
+            <img v-bind:src="path">
+        </div>
     </v-container>
 </template>
 
@@ -120,6 +123,7 @@ export default {
             modal: false,
             modal2: false,
             image: '',
+            path: '',
         }
     },
     computed: {
@@ -130,10 +134,9 @@ export default {
             this.$router.go(-1)
         },
         onImageChange(e){
-                console.log(e);
                 this.image = e;
         },
-        ConfirmForm(){
+        async ConfirmForm(){
             // let requestdata = {
             //     id: this.user.user.id,
             //     start_date: this.form.date,
@@ -142,15 +145,10 @@ export default {
             //     description: this.form.textarea,
             //     file:this.image,
             // }
-            let currentObj = this;
- 
-            const config = {
-                headers: { 'content-type': 'multipart/form-data' }
-            }
-
             let formData = new FormData();
+            // formData.file = this.image;
             formData.append('file', this.image);
-            let result = axios
+            let result = await axios
               .post("http://localhost:8000/api/report",formData )
               .then(r => {
                 console.log(r);
@@ -159,7 +157,8 @@ export default {
               .catch(err => {
                 console.log(err);
               });
-            
+            this.path ='http://localhost:8000'+result.data.path;
+            console.log(this.path);
         }
     },
 
