@@ -18,7 +18,7 @@ class Worklate extends Migration
             $table->Integer('employee_id');
             $table->date('latedate');
             $table->time('timeselect');
-            $table->longText('description');
+            $table->longText('description')->nullable();
         });
     }
 

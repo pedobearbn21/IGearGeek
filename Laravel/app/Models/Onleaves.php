@@ -12,6 +12,7 @@ class Onleaves extends Model
      * @var array
      */
     protected $fillable = [
-        'employee_id', 'start_date', 'end_date', 'type', 'status', 'file', 'description'
+        'employee_id', 'start_date', 'end_date', 'type', 'status', 'file', 'description','period'
     ];
+    public $timestamps = false;
 }

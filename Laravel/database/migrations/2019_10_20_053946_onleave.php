@@ -19,9 +19,10 @@ class Onleave extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('type');
-            $table->string('status');
-            $table->string('file');
-            $table->longText('description');
+            $table->string('status')->default('pending');
+            $table->string('file')->nullable();
+            $table->Integer('period')->nullable();
+            $table->longText('description')->nullable();
         });
     }
 
@@ -32,6 +33,6 @@ class Onleave extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('onleave');
+        Schema::dropIfExists('onleaves');
     }
 }

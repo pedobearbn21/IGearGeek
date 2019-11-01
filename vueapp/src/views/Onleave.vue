@@ -137,17 +137,14 @@ export default {
                 this.image = e;
         },
         async ConfirmForm(){
-            // let requestdata = {
-            //     id: this.user.user.id,
-            //     start_date: this.form.date,
-            //     end_date: this.form.date1,
-            //     type: this.form.type,
-            //     description: this.form.textarea,
-            //     file:this.image,
-            // }
             let formData = new FormData();
             // formData.file = this.image;
             formData.append('file', this.image);
+            formData.append('id', this.user.user.id);
+            formData.append('start_date', this.form.date);
+            formData.append('end_date', this.form.date1);
+            formData.append('type', this.form.type);
+            formData.append('description', this.form.textarea);
             let result = await axios
               .post("http://localhost:8000/api/report",formData )
               .then(r => {
@@ -157,8 +154,8 @@ export default {
               .catch(err => {
                 console.log(err);
               });
-            this.path ='http://localhost:8000'+result.data.path;
-            console.log(this.path);
+            // this.path ='http://localhost:8000'+result.data.path;
+            // console.log(this.path);
         }
     },
 

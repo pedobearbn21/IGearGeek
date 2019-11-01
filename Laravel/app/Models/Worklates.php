@@ -14,4 +14,5 @@ class Worklates extends Model
     protected $fillable = [
         'employee_id', 'latedate', 'timeselect','description'
     ];
+    public $timestamps = false;
 }
