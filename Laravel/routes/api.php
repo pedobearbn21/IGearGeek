@@ -20,6 +20,7 @@ Route::get('/abc', function(){
     return '1';
 });
 Route::post('/report','OnleaveController@savereport');
+Route::get('/getchart','ChartController@getonleavechart');
 Route::post('/upload', 'OnleaveController@uploadImage');
 Route::group([
     'prefix' => 'auth'

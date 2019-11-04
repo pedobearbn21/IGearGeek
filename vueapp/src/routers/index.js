@@ -47,6 +47,12 @@ export default new Router({
           path: "login",
           name: "login",
           component: Login
+        },
+        {
+          path: "charts",
+          name: "charts",
+          component: () =>
+            import(/* */ "@/components/ChartComp.vue")
         }
       ]
     }
