@@ -1,8 +1,16 @@
 <template>
     <v-container>
+<<<<<<< HEAD
+        <h2>ส่งคำขอลา</h2><br>
+        <v-card class="mx-auto"
+                height="750"
+                width="800">
+        <v-row class = "container">
+=======
         ส่งคำขอลา
         {{user.user.name}}
         <v-row>
+>>>>>>> 43fcd432de258775c7e9ce20f0028acdaa0427ed
             <div class="col">
                 <v-select
                     :items="items"
@@ -12,7 +20,7 @@
                 ></v-select>
             </div>
         </v-row>
-        <v-row>
+        <v-row class = "container">
             <v-col class="col">
                 <v-dialog
                     ref="dialog"
@@ -45,15 +53,14 @@
                 </v-dialog>
             </v-col>
         </v-row>
-        <v-row>
+        <v-row class = "container">
             <v-col class="col">
             <v-dialog
                 ref="dialog2"
                 v-model="modal2"
                 :return-value.sync="form.date1"
                 persistent
-                width="290px"
-            >
+                width="290px" >
                 <template v-slot:activator="{ on }">
                 <v-text-field
                     v-model="form.date1"
@@ -77,6 +84,9 @@
             </v-dialog>
             </v-col>
         </v-row>
+<<<<<<< HEAD
+         <v-row class = "container">
+=======
         <v-row>
             <v-col class="col">
                 <v-file-input ref="file-input"  label="File input" v-on:change='onImageChange'   outlined dense></v-file-input>
@@ -84,6 +94,7 @@
             </v-col>
         </v-row>
         <v-row>
+>>>>>>> 43fcd432de258775c7e9ce20f0028acdaa0427ed
             <v-col>
             <v-textarea
                 name="input-7-1"
@@ -94,8 +105,22 @@
             ></v-textarea>
             </v-col>
         </v-row>
-        <v-row justify='center' align="center">
+        <v-row class = "container">
+            <v-col class="col">
+                <v-file-input label="File input"  outlined dense></v-file-input>
+                <!-- <v-btn rounded color="primary" type='file' dark>Rounded Button</v-btn> -->
+            </v-col>
+        </v-row>
+        <v-row justify='center' align="center" class = "container">
             <v-btn-toggle>
+<<<<<<< HEAD
+                <v-btn color="white">Cancel</v-btn>
+                &nbsp;&nbsp;
+                <v-btn color="primary">Submit</v-btn>
+            </v-btn-toggle>
+        </v-row>
+        </v-card>
+=======
                 <v-btn color="primary" @click="back">Cancel</v-btn>
                 <v-btn color="primary" @change="ConfirmForm">Submit</v-btn>
             </v-btn-toggle>
@@ -103,6 +128,7 @@
         <div v-if="path">
             <img v-bind:src="path">
         </div>
+>>>>>>> 43fcd432de258775c7e9ce20f0028acdaa0427ed
     </v-container>
 </template>
 

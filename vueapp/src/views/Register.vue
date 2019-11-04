@@ -1,7 +1,9 @@
 <template>
     <v-container>
-        <h1>register</h1>
-        <v-card>
+        <h1>register</h1><br>
+        <v-card class="mx-auto"
+                height="450"
+                width="650">
             <v-card-text>
              <v-row class="mx-2 my-2">
                 <v-col cols='12' class="my-0 py-0">
@@ -35,7 +37,7 @@
                     ></v-text-field>
                 </v-col>
                 <v-col cols='12' class="my-0 py-0">
-                    <v-btn large  color="primary"  @click="signup">register</v-btn>
+                    <v-btn large  color="light-green darken-1" @click="signup">register</v-btn>
                 </v-col>
             </v-row>
             </v-card-text>
