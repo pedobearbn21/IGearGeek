@@ -1,17 +1,7 @@
 <template>
-<<<<<<< HEAD
   <v-app style="background: #F8FCC7">
       <v-app-bar app  style="background: #1F5769;">
       <img src="@/assets/igg.png" alt="" width="50"  height="50">
-=======
-  <v-app>
-      <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>IGEARGEEK</span>
-
-        <span class="font-weight-light"></span>
-      </v-toolbar-title>
->>>>>>> 43fcd432de258775c7e9ce20f0028acdaa0427ed
       <v-spacer></v-spacer>
       
       <router-link to="/" style="color:white"><v-btn text small color="white" @click="Home">Home</v-btn></router-link>
