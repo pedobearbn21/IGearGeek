@@ -1,10 +1,8 @@
 <template>
-    <v-div>
-        <h2>ส่งคำขอเข้างานสาย</h2><br>
-        <v-card class="mx-auto"
-                height="500"
-                width="700">
-        <v-row class = "container">
+    <div class="container">
+        <h2>ส่งคำขอเข้างานสาย</h2>
+        <v-card class="container">
+        <v-row>
             <v-col class="col">
             <v-dialog
                 ref="dialog2"
@@ -36,7 +34,7 @@
             </v-col>
         </v-row>
         <br>
-         <v-row class = "container">
+         <v-row>
             <v-col>
             <v-textarea
                 name="input-7-1"
@@ -48,28 +46,16 @@
             </v-col>
         </v-row>
         <br>
-
-        <mdb-container>
-            <mdb-row>
-                <mdb-col col="6">
-                <mdb-time-picker
-                        label="icon"
-                        icon="clock"
-                        @getValue="getPickerValue"/>
-                </mdb-col>
-            </mdb-row>
-        </mdb-container>
      
-        <v-row justify='center' align="center" class = "container">
+        <v-row justify='center' align="center" >
             <v-btn-toggle>
                 <v-btn color="white">Cancel</v-btn>
-                &nbsp;&nbsp;
                 <v-btn color="primary">Submit</v-btn>
             </v-btn-toggle>
         </v-row>
 
         </v-card>
-    </v-div>
+    </div>
 </template>
 
 <script>

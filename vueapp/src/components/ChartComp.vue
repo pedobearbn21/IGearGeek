@@ -84,9 +84,9 @@ export default {
         },
         calculatetype(data){
             let array = [
-                {name:'a',value=0},
-                {name:'b',value=0},
-                {name:'c',value=0}
+                {name:'a',value:0},
+                {name:'b',value:0},
+                {name:'c',value:0}
             ];
         }
 
