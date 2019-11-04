@@ -1,10 +1,28 @@
 <template>
-  <div>
-    <h1>Login</h1>
-    username : <input type="email" v-model="loginForm.email" /><br />
-    password : <input type="password" v-model="loginForm.password" /><br />
-    <button type="button" @click="btnLoginClick">Login</button>
+  <div class="row text-center">
+  <div class="col-12">
+      <img src="@/assets/logo_igeargeek.png" alt="" width="300"  height="100">
   </div>
+   <div class="col-12">
+     <div align="center">
+        <v-col cols="12" sm="4">
+              <v-text-field
+                type="email"
+                v-model="loginForm.email"
+                label="username"
+                outlined>
+              </v-text-field>
+              <v-text-field
+                type="password"
+                v-model="loginForm.password"
+                label="password"
+                outlined>
+              </v-text-field>
+          </v-col>
+      <v-btn type="button" color="primary" @click="btnLoginClick">Login</v-btn>
+    </div>
+  </div>
+ </div>
 </template>
 <script>
 import { sync, call, dispatch } from "vuex-pathify";
