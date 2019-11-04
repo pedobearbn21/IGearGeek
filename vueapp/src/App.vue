@@ -3,18 +3,13 @@
       <v-app-bar app  style="background: #1F5769;">
       <img src="@/assets/igg.png" alt="" width="50"  height="50">
       <v-spacer></v-spacer>
-      
-      <router-link to="/" style="color:white"><v-btn text small color="white" @click="Home">Home</v-btn></router-link>
-      &nbsp;&nbsp;
-      <router-link to="/onleave" style="color:white"><v-btn text small color="white" @click="Onleave">Onleave</v-btn></router-link>
-      &nbsp;&nbsp;
-      <router-link to="/late" style="color:white"><v-btn text small color="white" @click="Late">Late</v-btn></router-link>
-      &nbsp;&nbsp;
-      <router-link to="/login" style="color:white"><v-btn text small color="white" @click="login">login</v-btn></router-link>
-      &nbsp;&nbsp;
-      <router-link to="/register" style="color:white"><v-btn depressed color="green" @click="register">register</v-btn></router-link>
-      &nbsp;&nbsp;
-      <router-link to="/" style="color:white"><v-btn depressed large color="error" @click="logout">logout</v-btn></router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/onleave">Onleave</router-link> |
+      <router-link to="/late">Late</router-link> |
+      <router-link to="/login">login</router-link> |
+      <router-link to="/register">register</router-link> |
+      <router-link to="/"><button @click="logout">logout</button></router-link> |
+      <router-link to='/charts'>Charts</router-link>
     </v-app-bar>
 
     <v-content class="text-center">
