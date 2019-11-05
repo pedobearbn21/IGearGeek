@@ -20,8 +20,9 @@ Route::get('/abc', function(){
     return '1';
 });
 Route::post('/report','OnleaveController@savereport');
-Route::get('/getchart','ChartController@getonleavechart');
+Route::post('/getchart','ChartController@getonleavechart');
 Route::post('/upload', 'OnleaveController@uploadImage');
+Route::post('/sentlate', 'OnleaveController@savelate');
 Route::group([
     'prefix' => 'auth'
 ], function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Onleaves;
+use App\Models\Worklates;
 
 class OnleaveController extends Controller
 {
@@ -36,6 +37,17 @@ class OnleaveController extends Controller
         }else{
             return 'fail';
         }
+    }
+
+    public function savelate(Request $request){
+        $workslate = new Worklates([
+            'employee_id' => $request->employee_id,
+            'latedate' => $request->latedate,
+            'timeselect' => $request->timeselect,
+            'description' => $request->description
+        ]);
+        $workslate->save();
+        return 'success';
     }
 
     public function getallreport() {

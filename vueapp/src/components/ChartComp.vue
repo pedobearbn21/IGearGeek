@@ -25,12 +25,11 @@
                         prev-icon="mdi-skip-previous"
                         next-icon="mdi-skip-next"
                         v-model="month" 
-                        @change="listening"
                         type="month"
                         scrollable>
                     <v-spacer></v-spacer>
                         <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(month)">OK</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(month);listening()">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
             </v-col>
@@ -46,15 +45,22 @@ export default {
     name: "ChartsComp",
     data() {
         return {
-            typebar: 'bar',
+            typebar: 'pie',
             myChart: null,
             modal:false,
             month: new Date().toISOString().substr(0, 7),
         }
     },
     methods: {
-        listening(){
-            let result = axios.get('http://localhost:8000/api/getchart').then(r =>{
+        async listening(){
+            let a = new Date(this.month);
+            let form = {
+                month: a.getMonth()+1,
+                year: a.getFullYear(),
+            }
+            console.log(form);
+            let result = await axios.post('http://localhost:8000/api/getchart',form)
+                .then(r =>{
                 this.calculatetype(r);
             });
             return result;
@@ -83,10 +89,12 @@ export default {
         })
         },
         calculatetype(data){
+            console.log(data);
             let array = [
-                {name:'a',value:0},
-                {name:'b',value:0},
-                {name:'c',value:0}
+                {name:'week1',value:0},
+                {name:'week2',value:0},
+                {name:'week3',value:0},
+                {name:'week4',value:0},
             ];
         }
 

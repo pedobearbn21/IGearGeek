@@ -13,7 +13,7 @@ class Worklate extends Migration
      */
     public function up()
     {
-        Schema::create('late', function (Blueprint $table){
+        Schema::create('worklates', function (Blueprint $table){
             $table->increments('id');
             $table->Integer('employee_id');
             $table->date('latedate');
@@ -29,6 +29,6 @@ class Worklate extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('late');
+        Schema::dropIfExists('worklates');
     }
 }
