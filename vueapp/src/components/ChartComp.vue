@@ -33,22 +33,38 @@
                     </v-date-picker>
                 </v-dialog>
             </v-col>
-            <canvas id="myChart" width="200" height="50"></canvas>
+        </v-row>
+        <v-row>
+            <v-col>
+                <line-chart :chart-data="datacollection"></line-chart>
+                <!-- <mdb-pie-chart :data="pieChartData" :options="pieChartOptions" :bind='true' :width="600" :height="300"></mdb-pie-chart> -->
+            </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
-import Chart from 'chart.js'
+import Chart from 'chart.js';
+// import { mdbPieChart, mdbContainer } from 'mdbvue';
+import LineChart from './Line';
+const getDaysInMonth = date =>
+  new Date(date.getFullYear, date.getMonth + 1, 0).getDate;
 
 export default {
     name: "ChartsComp",
+    components: {
+    //   mdbPieChart,
+    //   mdbContainer,
+      LineChart
+    },
     data() {
         return {
-            typebar: 'pie',
-            myChart: null,
             modal:false,
             month: new Date().toISOString().substr(0, 7),
+            datasetofchart: null,
+            option:null,
+            chartpop:null,
+            datacollection: null
         }
     },
     methods: {
@@ -61,49 +77,63 @@ export default {
             console.log(form);
             let result = await axios.post('http://localhost:8000/api/getchart',form)
                 .then(r =>{
-                this.calculatetype(r);
+                this.calculatetype(r,form);
             });
             return result;
         },
-        chartsrun(){
-        const ctx = document.getElementById('myChart')
-        this.myChart = new Chart(ctx, {
-            type: this.typebar,
-            data: {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-                datasets: [{
-                    label: 'Page A',
-                    data: [61, 70, 80, 50],
-                    backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9']
-                }]
-            },
-            options: {
-                scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-                }
-            }
-        })
-        },
-        calculatetype(data){
-            console.log(data);
+        calculatetype(data1){
             let array = [
                 {name:'week1',value:0},
                 {name:'week2',value:0},
                 {name:'week3',value:0},
                 {name:'week4',value:0},
             ];
+            let array1 =  data1.data;
+            array1.forEach(element => {
+               let a = new Date(element.length_date[0][0],element.length_date[0][1], 0).getDate();
+               let dp = element.length_date[0][2] /(7.2) ;
+               let dataset = (a - element.length_date[0][2] );
+               if( dp > 0 && dp <=1 ){
+                   array[3].value++;
+                   array[2].value++;
+                   array[1].value++;
+                   array[0].value++;
+               }else if( dp > 1 && dp <=2 ){
+                   array[3].value++;
+                   array[2].value++;
+                   array[1].value++;
+               }else if( dp > 2 && dp <=3 ){
+                   array[3].value++;
+                   array[2].value++;
+               }else if( dp > 3 ){
+                   array[3].value++;
+               }else{
+                   alert('fail chart');
+               }
+            });
+        this.datasetofchart = [];
+        array.forEach(element => {
+            this.datasetofchart.push(element.value);
+        });
+        // for (let index = 0; index < array.length; index++) {
+        //     this.pieChartData.datasets[0].data[index] = this.datasetofchart[index];
+        // }
+        this.chartpop = this.datasetofchart;
+            this.datacollection = {
+                labels: ['week1','week2','week3','week4'],
+                datasets: [
+                    {
+                    label: ['week1','week2','week3','week4'],
+                    backgroundColor: ['#f87979','#f87979','#f87979','#f87979'],
+                    data: this.chartpop
+                    }
+                ]
+            }
         }
 
     },
     mounted() {
-        this.chartsrun();
+        this.listening();
     },
-        
-
-
 }
 </script>
