@@ -24,8 +24,8 @@ class WorklateController extends Controller
         return $reportwork;
     }
 
-    public function getreportbyuser(){
-        $report = Worklates::find(Auth::user()->id);
+    public function getreportworklate($id){
+        $report = Worklates::where('employee_id',$id)->get();
         return $report;
     }
 }

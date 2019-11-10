@@ -55,8 +55,14 @@ class OnleaveController extends Controller
         return $allreport;
     }
 
-    public function getreportbyuser(){
-        $report = Onleave::find(Auth::user()->id);
+    public function getreportbyuser($id){
+        $report = Onleaves::where('employee_id',$id)->get();
         return $report;
+    }
+
+    public function getreportonleaves($id){
+        $update = Onleaves::find($id)
+                    ->update(['status' => 'success']);
+        return 'success' ;
     }
 }

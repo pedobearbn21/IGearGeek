@@ -23,6 +23,12 @@ Route::post('/report','OnleaveController@savereport');
 Route::post('/getchart','ChartController@getonleavechart');
 Route::post('/upload', 'OnleaveController@uploadImage');
 Route::post('/sentlate', 'OnleaveController@savelate');
+Route::post('/latechart', 'ChartController@latechart');
+Route::post('/updatestatusonleave/{id}', 'OnleaveController@updatestatusonleave');
+Route::get('/getreportonleaves/{id}', 'OnleaveController@getreportbyuser');
+Route::get('/getreportworklate/{id}', 'WorklateController@getreportworklate');
+
+
 Route::group([
     'prefix' => 'auth'
 ], function () {

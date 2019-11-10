@@ -2,7 +2,7 @@
   <div v-if="user">
     <p>{{ user.user.name }}</p>
     <p>Role:{{ user.role }}</p>
-    <div  v-if='user.role == `owner`'>
+    <div  v-if='user.role == `admin`'>
       owner success
     </div>
   </div>

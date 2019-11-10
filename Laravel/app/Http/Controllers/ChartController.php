@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Onleaves;
+use App\Models\Worklates;
 use Illuminate\Support\Facades\DB;
 
 class ChartController extends Controller
 {
     public function getonleavechart(Request $request){
         $users = DB::table('onleaves')
-                ->whereMonth('start_date', $request->month)
-                ->whereYear('start_date', $request->year)
+                ->where('start_date','>=',$request[0])
+                ->where('end_date','<=',$request[1])
+                // ->whereMonth('start_date', $request->month)
+                // ->whereYear('start_date', $request->year)
                 ->get();
         foreach ($users as $key => $value) {
             $parts_start = explode('-',$value->start_date);
@@ -27,6 +30,13 @@ class ChartController extends Controller
             //     return 'fuck';
             // }
         }
+        return $users;
+    }
+
+    public function latechart(Request $request){
+        $users = DB::table('worklates')
+                    ->where('latedate','like', "$request->latedate%")
+                    ->get();
         return $users;
     }
 }

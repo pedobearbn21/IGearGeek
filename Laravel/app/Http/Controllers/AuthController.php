@@ -30,8 +30,15 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
         $user->save();
-        // $owner = Role::find(1);
+        $owner = DB::table('roles')->where('name','=','employee')->get();
         // $user->attachRole($owner->id);
+        $roles_user = DB::table('role_user')->insert(
+            [
+                'role_id' => $owner[0]->id,
+                'user_id' => $user->id,
+                'user_type'=> 'IDK'
+            ]
+        );
         return $user;
        }
 
@@ -43,7 +50,9 @@ class AuthController extends Controller
             // $success['token'] =  $user->createToken('token')-> accessToken;
             // $role = DB::table('role_user')->where('user_id', '=', $user->id)->get();
             // $data = DB::table('roles')->where('id', '=', $role[0]->role_id)->get();
-            return response()->json(['user'=>$user]);
+            $role = DB::table('role_user')->where('user_id',$user->id)->get();
+            $role_of_user = DB::table('roles')->where('id',$role[0]->role_id)->get();
+            return response()->json(['user'=>$user,'role'=>$role_of_user[0]->name]);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);

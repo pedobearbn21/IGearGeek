@@ -10,7 +10,7 @@ class RoleandPermissionController extends Controller
 {
     public function createrole(){
         $owner = new Role();
-        $owner->name         = 'owner';
+        $owner->name         = 'employee';
         $owner->display_name = 'Project Owner'; // optional
         $owner->description  = 'User is the owner of a given project'; // optional
         $owner->save();
