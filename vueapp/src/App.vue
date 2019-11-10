@@ -1,56 +1,86 @@
 <template>
   <v-app style="background: #F8FCC7">
-      <v-app-bar app  style="background: #1F5769;">
-      <img src="@/assets/igg.png" alt="" width="50"  height="50">
-      <v-spacer></v-spacer>
-      <!-- <div v-if=" user.role == 'employee' "> -->
-      <router-link to="/">Home</router-link> |
-      <router-link to="/onleave">Onleave</router-link> |
-      <router-link to="/late">Late</router-link> |
-      <router-link to="/"><button @click="logout">logout</button></router-link> |
-      <router-link to='/updatestatusorleave'>updatestatusorleave</router-link>
-    </v-app-bar>
+     <NavComp/>
+    <v-container class="fill-height"  style="background: #F8FCC7">
+      <v-row
+        align="center"
+        justify="center"
+      >
+        <!-- <v-btn
+          color="pink"
+          dark
+          style="height:100px;"
+          @click.stop="drawertoogle = !drawertoogle"
+        >
+          Toggle
+        </v-btn> -->
+        <v-content class="text-center container">
+              <router-view></router-view>
+        </v-content>
+      </v-row>
+    </v-container>
 
-      <!-- </div> -->
-      <!-- <div v-else-if =" user.role == 'admin' "> -->
-        <router-link to='/charts'>Charts</router-link> |
-        <router-link to="/"><button @click="logout">logout</button></router-link> |
-      <!-- </div> -->
-      <!-- <div v-else> -->
-        <router-link to="/login">login</router-link> |
-        <router-link to="/register">register</router-link> 
-      <!-- </div> -->
-    </v-app-bar>
-    <v-content class="text-center container">
-      <router-view></router-view>
-    </v-content>
+    <v-navigation-drawer
+      v-model="drawertoogle"
+      absolute
+      temporary
+    >
+      <v-list-item>
+        <v-list-item-avatar>
+          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>John Leider</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+        
   </v-app>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld";
 import LoginComp from "./views/Login";
+import NavComp from './components/NavComp';
 import { sync, call } from "vuex-pathify";
 
 
 export default {
   name: "App",
-  mounted() {
-  },
   components: {
     HelloWorld,
-    LoginComp
+    LoginComp,
+    NavComp
+  },data() {
+    return {
+      items: [
+                { title: 'Home', icon: 'dashboard' },
+                { title: 'About', icon: 'question_answer' },
+            ],
+    }
   },
   computed: {
     ...sync("user/*")
-  },
-  methods: {
-    ...call("user/*"),
-    logout(){
-      this.logouted();
-    }
-  },
-  created() {
   },
 };
 </script>

@@ -1,6 +1,7 @@
 import { make } from "vuex-pathify";
 
 const state = {
+  drawertoogle: false,
   user: null,
   username: "John Doe",
   loginForm: {
