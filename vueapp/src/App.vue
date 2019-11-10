@@ -8,6 +8,8 @@
       <router-link to="/onleave">Onleave</router-link> |
       <router-link to="/late">Late</router-link> |
       <router-link to="/"><button @click="logout">logout</button></router-link> |
+      <router-link to='/updatestatusorleave'>updatestatusorleave</router-link>
+    </v-app-bar>
 
       <!-- </div> -->
       <!-- <div v-else-if =" user.role == 'admin' "> -->

@@ -53,6 +53,12 @@ export default new Router({
           name: "charts",
           component: () =>
             import(/* */ "@/components/ChartComp.vue")
+        },
+        {
+          path: "updatestatusorleave",
+          name: "updatestatusorleave",
+          component: () =>
+            import(/* webpackChunkName: "about" */ "@/views/updatestatusorleave")
         }
       ]
     }
