@@ -59,6 +59,12 @@ export default new Router({
           name: "updatestatusorleave",
           component: () =>
             import(/* webpackChunkName: "about" */ "@/views/updatestatusorleave")
+        },
+        {
+          path: "showempdata",
+          name: "showempdata",
+          component: () =>
+            import(/* webpackChunkName: "about" */ "@/views/showempdata")
         }
       ]
     }
