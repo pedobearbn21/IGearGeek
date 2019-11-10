@@ -9,7 +9,8 @@
       <router-link to="/login">login</router-link> |
       <router-link to="/register">register</router-link> |
       <router-link to="/"><button @click="logout">logout</button></router-link> |
-      <router-link to='/charts'>Charts</router-link>
+      <router-link to='/charts'>Charts</router-link> |
+      <router-link to='/updatestatusorleave'>updatestatusorleave</router-link>
     </v-app-bar>
 
     <v-content class="text-center">
