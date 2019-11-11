@@ -1,10 +1,11 @@
 <template>
     <v-container>
-        <h1>register</h1><br>
+        
         <v-card class="mx-auto"
-                height="450"
+                height="475"
                 width="650">
             <v-card-text>
+                <h2>register</h2>
              <v-row class="mx-2 my-2">
                 <v-col cols='12' class="my-0 py-0">
                     <v-text-field

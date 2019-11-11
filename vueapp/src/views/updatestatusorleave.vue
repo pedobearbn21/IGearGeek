@@ -6,6 +6,7 @@
       <thead>
         <tr>
           <th class="text-center">Id</th>
+          <th class="text-center">Name</th>
           <th class="text-center">Latedate</th>
           <th class="text-center">Time</th>
           <th class="text-center">Descripton</th>
@@ -15,6 +16,7 @@
       <tbody>
         <tr v-for="item in desserts" :key="item.id">
           <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
           <td>{{ item.latedate }}</td>
           <td>{{ item.timeselect }}</td>
           <td><v-btn  color="secondary"  @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn><v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')" >cancel</v-btn></td>

@@ -1,11 +1,11 @@
 <template>
+<div>
   <div v-if="user">
-    <p>{{ user.user.name }}</p>
-    <p>Role:{{ user.role }}</p>
-    <div  v-if='user.role == `admin`'>
-      owner success
-    </div>
+    <p>Welcome : {{ user.user.name }}</p>
   </div>
+  <div>
+  </div>
+</div>
 </template>
 
 <script>

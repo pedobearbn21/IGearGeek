@@ -27,10 +27,11 @@
                             <template v-slot:default>
                             <thead>
                                 <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">status</th>
+                                <th class="text-center">id</th>
                                 <th class="text-center">Onleave_startdate</th>
                                 <th class="text-center">Onleave_enddate</th>
+                                <th class="text-center">Descripton</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center">ImageFile</th>
                                 <th class="text-center">Button</th>
                                 
@@ -39,9 +40,10 @@
                             <tbody>
                                 <tr v-for="item in dataonleave" :key="item" >
                                 <td>{{ item.id }}</td>
-                                <td>{{ item.status }}</td>
                                 <td>{{ item.start_date }}</td>
                                 <td>{{ item.end_date }}</td>
+                                <td>{{ item.description }}</td>
+                                <td>{{ item.status }}</td>
                                 <td>
                                     <b-button v-b-modal="`modal-`+item.id">เอกสารเพิ่มเติม</b-button>
 
@@ -76,6 +78,7 @@
                                 <th class="text-center">Latedate</th>
                                 <th class="text-center">Time</th>
                                 <th class="text-center">Descripton</th>
+                                <th class="text-center">Button</th>
                                 
                                 </tr>
                             </thead>
@@ -84,6 +87,7 @@
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.latedate }}</td>
                                 <td>{{ item.timeselect }}</td>
+                                <td>{{ item.description }}</td>
                                 <td><v-btn  color="error" @click="deletelate(item.id)" >cancel</v-btn></td>
                                 </tr>
                             </tbody>

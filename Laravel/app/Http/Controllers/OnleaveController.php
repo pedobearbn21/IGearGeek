@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Onleaves;
 use App\Models\Worklates;
+use Illuminate\Support\Facades\DB;
 
 class OnleaveController extends Controller
 {
@@ -51,7 +52,11 @@ class OnleaveController extends Controller
     }
 
     public function getallreport() {
-        $allreport = Onleaves::where('status','pending')->get();
+        $allreport = DB::table('onleaves')
+            ->join('users', 'onleaves.employee_id', '=', 'users.id')
+            ->select('users.name', 'onleaves.*')
+            ->where('status','=','pending')
+            ->get();
         return $allreport;
     }
 

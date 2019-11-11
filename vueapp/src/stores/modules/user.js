@@ -2,8 +2,10 @@ import { make } from "vuex-pathify";
 
 const state = {
   drawertoogle: false,
-  user: null,
-  username: "John Doe",
+  user: { 
+        user: null,
+        role: 'guest'
+  },
   loginForm: {
     email: "",
     password: ""
@@ -42,7 +44,9 @@ const actions = {
   },
   logouted: async function({ state }) {
     let a = await localStorage.removeItem('user');
-    state.user = null;
+    state.user = { user: null,
+                    role: 'guest'
+                  };
     // let result = axios
     //   .post("http://localhost:8000/api/auth/logout")
     //   .then(r => {
@@ -53,7 +57,10 @@ const actions = {
     //   });
   },
   logged: () => {
-    state.user = JSON.parse(localStorage.getItem('user'));
+    let res = JSON.parse(localStorage.getItem('user'));
+    if(res){
+      state.user = JSON.parse(localStorage.getItem('user'));
+    }
     console.log(state.user);
   }
 };

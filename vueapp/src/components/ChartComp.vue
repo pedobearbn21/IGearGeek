@@ -1,29 +1,31 @@
 <template>
+
     <v-container>
+        <v-card>
         <v-row class="margin:0px;">
             <v-col cols='12'>
                 <v-tabs
                     v-model="tab"
                     centered 
-                    background-color='#F8FCC7'
+
                     >
                 <v-tabs-slider ></v-tabs-slider>
 
                 <v-tab href="#tab-1">
-                    Onleave
+                    <h2>Onleave</h2>
                 </v-tab>
 
                 <v-tab href="#tab-2">
-                    Late
+                    <h2>Late</h2>
                 </v-tab>
                 </v-tabs>
             </v-col>
             <v-col>
-                <v-tabs-items v-model="tab" style="background: #F8FCC7;">
+                <v-tabs-items v-model="tab">
                     <v-tab-item
                         :value="'tab-1'"
                         >
-                                <v-row>
+                                <v-row class="mx-5">
                                         <v-dialog
                                             ref="dialog"
                                             v-model="modal"
@@ -63,7 +65,7 @@
                     <v-tab-item
                         :value="'tab-2'"
                         >
-                        <v-row>
+                        <v-row class="mx-5">
                         <v-dialog
                             ref="dialog"
                             v-model="modallate"
@@ -101,7 +103,9 @@
                 </v-tabs-items>
             </v-col>
         </v-row>
+        </v-card>
     </v-container>
+
 </template>
 
 <script>

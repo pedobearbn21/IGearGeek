@@ -1,11 +1,15 @@
 <template>
+<v-container>
+  <v-card class="mx-auto"
+                height="450"
+                width="650">
   <div class="row text-center">
   <div class="col-12">
       <img src="@/assets/logo_igeargeek.png" alt="" width="300"  height="100">
   </div>
    <div class="col-12">
      <div align="center">
-        <v-col cols="12" sm="4">
+        <v-col cols="12">
               <v-text-field
                 type="email"
                 v-model="loginForm.email"
@@ -23,6 +27,8 @@
     </div>
   </div>
  </div>
+</v-card>
+</v-container>
 </template>
 <script>
 import { sync, call, dispatch } from "vuex-pathify";

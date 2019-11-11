@@ -95,7 +95,7 @@
         </v-row>
         <v-row justify='center' align="center" class = "container">
             <v-btn-toggle>
-                <v-btn color="primary" @click="back">Cancel</v-btn>
+                <v-btn color="white" @click="back">Cancel</v-btn>
                 <v-btn color="primary" @change="ConfirmForm">Submit</v-btn>
             </v-btn-toggle>
         </v-row>
@@ -119,7 +119,7 @@ export default {
                 textarea: '',
                 file: null
             },
-            items: ['a','b','c'],
+            items: ['ลาป่วย','ลาคลอดบุตร','ลากิจส่วนตัว','ลาพักผ่อน','ลาอุปสมบท','ลาไปศึกษา','ลาไปปฎิบัติงาน','ลาติดตามคู่สมรส','ลาไปฟื้นฟูสมรรถภาพทางอาชีพ'],
             modal: false,
             modal2: false,
             image: '',

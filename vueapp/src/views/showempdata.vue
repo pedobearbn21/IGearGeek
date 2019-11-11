@@ -5,8 +5,9 @@
     <template v-slot:default>
       <thead>
         <tr>
+          <th class="text-center">ID</th>
           <th class="text-center">Name</th>
-          <th class="text-center">status</th>
+          <th class="text-center">Status</th>
           <th class="text-center">Onleave_startdate</th>
           <th class="text-center">Onleave_enddate</th>
           <th class="text-center">ImageFile</th>
@@ -17,6 +18,7 @@
       <tbody>
         <tr v-for="item in desserts" :key="item" >
           <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
           <td>{{ item.status }}</td>
           <td>{{ item.start_date }}</td>
           <td>{{ item.end_date }}</td>

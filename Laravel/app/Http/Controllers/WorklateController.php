@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Worklates;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class WorklateController extends Controller
 {
@@ -20,7 +22,11 @@ class WorklateController extends Controller
     }
 
     public function getreport(){
-        $reportwork = Worklates::where('status','=','pending')->get();
+        $reportwork = DB::table('worklates')
+            ->join('users', 'worklates.employee_id', '=', 'users.id')
+            ->select('users.name', 'worklates.*')
+            ->where('status','=','pending')
+            ->get();
         return $reportwork;
     }
 
