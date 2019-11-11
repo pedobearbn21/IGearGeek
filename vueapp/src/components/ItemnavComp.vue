@@ -1,8 +1,17 @@
 <template>
-    <v-app-bar app  style="background: #1F5769;">
-        <img src="@/assets/igg.png" alt="" width="50"  height="50">
-        <v-spacer></v-spacer>
-        <!-- <router-link to="/">Home</router-link> |
+    <div>
+        <v-list-item>
+            <v-list-item-content>
+            <v-list-item-title>{{user.user.name}}</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+
+            <v-divider></v-divider>
+
+            <v-list dense>
+                <v-list-item>
+                <v-list-item-content>
+                <router-link to="/">Home</router-link> |
         <div v-if=" user.role == 'employee' ">
         <router-link to="/onleave">Onleave</router-link> |
         <router-link to="/late">Late</router-link> |
@@ -19,32 +28,20 @@
         <div v-else>
             <router-link to="/login">login</router-link> |
             <router-link to="/register">register</router-link> 
-        </div> -->
-        <v-app-bar-nav-icon color='yellow' @click.stop="drawertoogle = !drawertoogle"></v-app-bar-nav-icon>
-    </v-app-bar>
+        </div>
+                </v-list-item-content>
+                </v-list-item>
+            </v-list>
+    </div>
+    
 </template>
 
 <script>
-import { sync, call } from "vuex-pathify";
+import { sync } from "vuex-pathify";
 export default {
-    name: "NavComp",
-    data() {
-        return {
-            
-        }
-    },
+    name:'ItemnavComp',
     computed: {
-    ...sync("user/*")
-    },
-    methods: {
-        ...call("user/*"),
-        logout(){
-        this.logouted();
+        ...sync("user/*")
         },
-        modalprop(){
-            this.drawer = !this.drawer
-        }
-    }
-
 }
 </script>
