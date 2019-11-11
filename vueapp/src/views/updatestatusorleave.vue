@@ -1,26 +1,25 @@
 <template>
 <v-container>
+  <h2>List Late Report</h2>
   <v-simple-table>
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-center">Name</th>
-          <th class="text-center">status</th>
-          <th class="text-center">date</th>
+          <th class="text-center">Id</th>
+          <th class="text-center">Latedate</th>
+          <th class="text-center">Time</th>
+          <th class="text-center">Descripton</th>
           
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in desserts" :key="item.name">
-          <td>{{ item.name }}</td>
-          <td>{{ item.status }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.button }}</td>
-          <td><v-btn  color="secondary" >allow</v-btn><v-btn  color="error" >cancle</v-btn></td>
-          
+        <tr v-for="item in desserts" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.latedate }}</td>
+          <td>{{ item.timeselect }}</td>
+          <td><v-btn  color="secondary"  @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn><v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')" >cancel</v-btn></td>
         </tr>
       </tbody>
-      
     </template>
   </v-simple-table>
   
@@ -34,48 +33,28 @@
     data () {
       return {
         desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-          },
         ],
+        status: {
+          status: ''
+        }
       }
+    },
+    methods: {
+      getlate(){
+        axios.get('http://localhost:8000/api/getreport')
+            .then(r =>{
+              this.desserts = r.data;
+            });
+      },
+      updatestatus(id,word){
+        axios.post('http://localhost:8000/api/updatestatuslate/'+id,this.status)
+            .then(r =>{
+              this.getlate();
+            });
+      }
+    },
+    mounted() {
+      this.getlate();
     },
   }
 </script>

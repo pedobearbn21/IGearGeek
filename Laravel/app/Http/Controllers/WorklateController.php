@@ -20,12 +20,23 @@ class WorklateController extends Controller
     }
 
     public function getreport(){
-        $reportwork = Worklates::all();
+        $reportwork = Worklates::where('status','=','pending')->get();
         return $reportwork;
     }
 
     public function getreportworklate($id){
         $report = Worklates::where('employee_id',$id)->get();
         return $report;
+    }
+
+    public function updatestatuslate(Request $request,$id){
+        $update = Worklates::where('id',$id)
+            ->update(['status' => $request->status]);
+         return $request;
+    }
+
+    public function deletelate($id){
+        $late = Worklates::delete($id);
+        $late->delete();
     }
 }

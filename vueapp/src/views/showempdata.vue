@@ -1,45 +1,42 @@
 <template>
 <v-container>
+  <h2>List Onleave Report</h2>
   <v-simple-table>
     <template v-slot:default>
       <thead>
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">status</th>
-          <th class="text-center">date</th>
+          <th class="text-center">Onleave_startdate</th>
+          <th class="text-center">Onleave_enddate</th>
+          <th class="text-center">ImageFile</th>
+          <th class="text-center">Button</th>
           
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in desserts" :key="item.name" >
-          <td>{{ item.name }}</td>
+        <tr v-for="item in desserts" :key="item" >
+          <td>{{ item.id }}</td>
           <td>{{ item.status }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.button }}</td>
-          <td><v-dialog v-model="dialog" max-width="500px">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">information</v-btn>
-          </template>
-          <v-card class="mx-auto" max-width="400">
-            <v-img
-            class="white--text align-end"
-            height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-            >
-            <v-card-title>show</v-card-title>
-            </v-img>
+          <td>{{ item.start_date }}</td>
+          <td>{{ item.end_date }}</td>
+          <td>
+            <b-button v-b-modal="`modal-`+item.id">เอกสารเพิ่มเติม</b-button>
 
-            <v-card-text>
-              
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">close</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog></td>
-          
+            <b-modal :id='`modal-`+item.id' class="justify-content-center">
+              <div v-if="item.file">
+                <img
+                  :src='path+item.file'
+                  width="100%"
+                  height="100%"
+                >
+              </div>
+              <div v-else class="text-center">
+                No Image
+              </div>
+            </b-modal>
+          </td>
+          <td><v-btn  color="secondary" @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn><v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')">cancel</v-btn></td>
         </tr>
       </tbody>
       
@@ -56,63 +53,38 @@
     data () {
       return {
         desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-          },
-          
         ],
+        dialog:false,
+        path: 'http://localhost:8000',
+        status: {
+          status: ''
+        }
       }
     },
-    close () {
+    methods: {
+      close() {
         this.dialog = false
         setTimeout(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
         }, 300)
       },
-  }
-  
-    
+      getreport(){
+        axios.get('http://localhost:8000/api/getallreport')
+            .then(r =>{
+              this.desserts = r.data;
+            });
+      },
+      updatestatus(id,word){
+        axios.post('http://localhost:8000/api/updatestatusonleave/'+id,this.status)
+            .then(r =>{
+              this.getreport();
+            });
+      }
+      
+    },
+    mounted() {
+      this.getreport();
+    },
+  } 
 </script>
-
-
-<style>
-
-</style>

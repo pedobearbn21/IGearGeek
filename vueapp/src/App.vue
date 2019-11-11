@@ -1,7 +1,7 @@
 <template>
   <v-app style="background: #F8FCC7">
      <NavComp/>
-    <v-container class="fill-height"  style="background: #F8FCC7">
+    <v-container style="background: #F8FCC7">
       <v-row
         align="center"
         justify="center"

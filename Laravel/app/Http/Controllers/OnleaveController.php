@@ -51,7 +51,7 @@ class OnleaveController extends Controller
     }
 
     public function getallreport() {
-        $allreport = Onleaves::all();
+        $allreport = Onleaves::where('status','pending')->get();
         return $allreport;
     }
 
@@ -60,9 +60,19 @@ class OnleaveController extends Controller
         return $report;
     }
 
-    public function getreportonleaves($id){
+    public function updatestatusonleave(Request $request,$id){
         $update = Onleaves::find($id)
-                    ->update(['status' => 'success']);
-        return 'success' ;
+                    ->update(['status' => $request->status]);
+    }
+
+    public function deleteonleave($id){
+        $onleave = Onleaves::find($id);
+        if(file_exists(public_path($onleave->file))) {
+            unlink(public_path($onleave->file));
+            return 'kawo';
+
+        }
+        return $onleave;
+        $onleave->delete();
     }
 }

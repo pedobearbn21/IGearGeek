@@ -6,11 +6,14 @@
         <div v-if=" user.role == 'employee' ">
         <router-link to="/onleave">Onleave</router-link> |
         <router-link to="/late">Late</router-link> |
+        <router-link to='/reportuser'>History Report</router-link> |
         <router-link to="/"><button @click="logout">logout</button></router-link>
+        
         </div>
         <div v-else-if =" user.role == 'admin' ">
             <router-link to='/charts'>Charts</router-link> |
-            <router-link to='/updatestatusorleave'>AcceptForm</router-link> |
+            <router-link to='/updatestatusorleave'>AcceptLate</router-link> |
+            <router-link to='/showempdata'>AccepOnleave</router-link> |
             <router-link to="/"><button @click="logout">logout</button></router-link> 
         </div>
         <div v-else>

@@ -207,7 +207,11 @@ export default {
             }
         },
         getLate(){
-            axios.post('http://localhost:8000/api/latechart',this.latemonth)
+            console.log(this.latemonth);
+            let data = {
+                latedate: this.latemonth
+            }
+            axios.post('http://localhost:8000/api/latechart',data)
                 .then(r =>{
                     console.log(r);
                     this.LateChart(r);
@@ -224,9 +228,6 @@ export default {
             request.data.forEach(element => {
                 let pass = new Date(element.latedate);
                 let datedays = new Date(pass.getFullYear(),pass.getMonth()+1,0).getDate();
-                console.log(pass, datedays);
-                console.log(pass.getDate() / 7.2);
-                console.log(datedays - pass.getDate());
                 let dp = 0;
                 dp = pass.getDate() / 7.2;
                 if( dp > 0 && dp <=1 ){

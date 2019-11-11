@@ -65,6 +65,12 @@ export default new Router({
           name: "showempdata",
           component: () =>
             import(/* webpackChunkName: "about" */ "@/views/showempdata")
+        },
+        {
+          path: "reportuser",
+          name: "reportuser",
+          component: () =>
+            import(/* webpackChunkName: "about" */ "@/views/ReportUser")
         }
       ]
     }

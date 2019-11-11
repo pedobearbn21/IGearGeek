@@ -22,11 +22,21 @@ Route::get('/abc', function(){
 Route::post('/report','OnleaveController@savereport');
 Route::post('/getchart','ChartController@getonleavechart');
 Route::post('/upload', 'OnleaveController@uploadImage');
+
 Route::post('/sentlate', 'OnleaveController@savelate');
 Route::post('/latechart', 'ChartController@latechart');
+
+Route::get('/getallreport', 'OnleaveController@getallreport');
+Route::get('/getreport', 'WorklateController@getreport');
+
 Route::post('/updatestatusonleave/{id}', 'OnleaveController@updatestatusonleave');
+Route::post('/updatestatuslate/{id}', 'WorklateController@updatestatuslate');
+
 Route::get('/getreportonleaves/{id}', 'OnleaveController@getreportbyuser');
 Route::get('/getreportworklate/{id}', 'WorklateController@getreportworklate');
+
+Route::delete('/deleteonleave/{id}', 'OnleaveController@deleteonleave');
+Route::delete('/deletelate/{id}', 'WorklateController@deletelate');
 
 
 Route::group([
