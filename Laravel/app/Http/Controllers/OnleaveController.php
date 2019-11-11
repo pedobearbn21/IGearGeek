@@ -60,6 +60,14 @@ class OnleaveController extends Controller
         return $allreport;
     }
 
+    public function getallonleaves(){
+        $allreport = DB::table('onleaves')
+            ->join('users', 'onleaves.employee_id', '=', 'users.id')
+            ->select('users.name', 'onleaves.*')
+            ->get();
+        return $allreport;
+    }
+
     public function getreportbyuser($id){
         $report = Onleaves::where('employee_id',$id)->get();
         return $report;
@@ -72,11 +80,13 @@ class OnleaveController extends Controller
 
     public function deleteonleave($id){
         $onleave = Onleaves::find($id);
-        if(file_exists(public_path($onleave->file))) {
-            unlink(public_path($onleave->file));
-            return 'kawo';
+        // if(file_exists(public_path($onleave->file))) {
+        //     unlink(public_path($onleave->file));
+        //     return 'kawo';
 
-        }
+        // }
+        $onleave->status = 'cancel';
+        $onleaves->save();
         return $onleave;
         $onleave->delete();
     }

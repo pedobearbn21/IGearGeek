@@ -8,8 +8,9 @@
           <th class="text-center">ID</th>
           <th class="text-center">Name</th>
           <th class="text-center">Status</th>
-          <th class="text-center">Onleave_startdate</th>
-          <th class="text-center">Onleave_enddate</th>
+          <th class="text-center">Startdate</th>
+          <th class="text-center">Enddate</th>
+          <th class="text-center">Description</th>
           <th class="text-center">ImageFile</th>
           <th class="text-center">Button</th>
           
@@ -22,6 +23,7 @@
           <td>{{ item.status }}</td>
           <td>{{ item.start_date }}</td>
           <td>{{ item.end_date }}</td>
+          <td>{{ item.description }}</td>
           <td>
             <b-button v-b-modal="`modal-`+item.id">เอกสารเพิ่มเติม</b-button>
 
@@ -38,10 +40,14 @@
               </div>
             </b-modal>
           </td>
-          <td><v-btn  color="secondary" @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn><v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')">cancel</v-btn></td>
+          <td>
+            <v-btn-toggle class="my-2">
+              <v-btn  color="secondary" @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn>
+              <v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')">cancel</v-btn>
+            </v-btn-toggle>
+          </td>
         </tr>
       </tbody>
-      
     </template>
   </v-simple-table>
   
@@ -81,6 +87,7 @@
         axios.post('http://localhost:8000/api/updatestatusonleave/'+id,this.status)
             .then(r =>{
               this.getreport();
+              alert('UpdateSuccess');
             });
       }
       

@@ -10,6 +10,7 @@
           <th class="text-center">Latedate</th>
           <th class="text-center">Time</th>
           <th class="text-center">Descripton</th>
+          <th class="text-center">Button</th>
           
         </tr>
       </thead>
@@ -19,7 +20,13 @@
           <td>{{ item.name }}</td>
           <td>{{ item.latedate }}</td>
           <td>{{ item.timeselect }}</td>
-          <td><v-btn  color="secondary"  @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn><v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')" >cancel</v-btn></td>
+          <td>{{ item.description }}</td>
+          <td>
+            <v-btn-toggle class="my-2">
+              <v-btn  color="secondary"  @click="updatestatus(item.id,status.status = 'success')" >allow</v-btn>
+              <v-btn  color="error" @click="updatestatus(item.id,status.status = 'cancel')" >cancel</v-btn>
+            </v-btn-toggle>
+          </td>
         </tr>
       </tbody>
     </template>
@@ -52,6 +59,7 @@
         axios.post('http://localhost:8000/api/updatestatuslate/'+id,this.status)
             .then(r =>{
               this.getlate();
+              alert('UpdateSuccess');
             });
       }
     },

@@ -28,23 +28,23 @@
                             <template v-slot:default>
                             <thead>
                                 <tr>
-                                <th class="text-center">id</th>
-                                <th class="text-center">Onleave_startdate</th>
-                                <th class="text-center">Onleave_enddate</th>
-                                <th class="text-center">Descripton</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">ImageFile</th>
-                                <th class="text-center">Button</th>
-                                
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Startdate</th>
+                                    <th class="text-center">Enddate</th>
+                                    <th class="text-center">Description</th>
+                                    <th class="text-center">ImageFile</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="item in dataonleave" :key="item" >
                                 <td>{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.status }}</td>
                                 <td>{{ item.start_date }}</td>
                                 <td>{{ item.end_date }}</td>
                                 <td>{{ item.description }}</td>
-                                <td>{{ item.status }}</td>
                                 <td>
                                     <b-button v-b-modal="`modal-`+item.id">เอกสารเพิ่มเติม</b-button>
 
@@ -61,7 +61,6 @@
                                     </div>
                                     </b-modal>
                                 </td>
-                                <td><v-btn  color="error" @click="deleteonleave(item.id)">cancel</v-btn></td>
                                 </tr>
                             </tbody>
                             
@@ -80,8 +79,6 @@
                                 <th class="text-center">Time</th>
                                 <th class="text-center">Descripton</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-center">Button</th>
-                                
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,7 +88,6 @@
                                 <td>{{ item.timeselect }}</td>
                                 <td>{{ item.description }}</td>
                                 <td>{{ item.status }}</td>
-                                <td><v-btn  color="error" @click="deletelate(item.id)" >cancel</v-btn></td>
                                 </tr>
                             </tbody>
                             </template>
@@ -105,7 +101,6 @@
 </template>
 
 <script>
-import { sync } from "vuex-pathify";
 export default {
     data() {
         return {
@@ -122,38 +117,22 @@ export default {
     },
     methods: {
         getreport(){
-            console.log(this.user.user.id);
-            axios.get('http://localhost:8000/api/getreportonleaves/'+this.user.user.id)
+            axios.get('http://localhost:8000/api/getallonleaves')
                 .then(r =>{
                     this.dataonleave = r.data;
                 }
             );
         },
         getlate(){
-            axios.get('http://localhost:8000/api/getreportworklate/'+this.user.user.id)
+            axios.get('http://localhost:8000/api/getallworklate')
                 .then(r =>{
                 this.datalate = r.data;
                 });
         },
-        deletelate(id){
-            axios.post('http://localhost:8000/api/deletelate/'+id)
-                .then(r => {
-                    alert('Cencel Report');
-                });
-        },
-        deleteonleave(id){
-            axios.post('http://localhost:8000/api/deleteonleave/'+id)
-                .then(r => {
-                    alert('Cencel Report');
-                });
-        }
     },
     mounted() {
         this.getreport();
         this.getlate();
-    },
-    computed: {
-        ...sync("user/*")
     },
 }
 </script>

@@ -29,14 +29,18 @@ Route::post('/latechart', 'ChartController@latechart');
 Route::get('/getallreport', 'OnleaveController@getallreport');
 Route::get('/getreport', 'WorklateController@getreport');
 
+Route::get('/getallonleaves', 'OnleaveController@getallonleaves');
+Route::get('/getallworklate', 'WorklateController@getallworklate');
+
+
 Route::post('/updatestatusonleave/{id}', 'OnleaveController@updatestatusonleave');
 Route::post('/updatestatuslate/{id}', 'WorklateController@updatestatuslate');
 
 Route::get('/getreportonleaves/{id}', 'OnleaveController@getreportbyuser');
 Route::get('/getreportworklate/{id}', 'WorklateController@getreportworklate');
 
-Route::delete('/deleteonleave/{id}', 'OnleaveController@deleteonleave');
-Route::delete('/deletelate/{id}', 'WorklateController@deletelate');
+Route::post('/deleteonleave/{id}', 'OnleaveController@deleteonleave');
+Route::post('/deletelate/{id}', 'WorklateController@deletelate');
 
 
 Route::group([

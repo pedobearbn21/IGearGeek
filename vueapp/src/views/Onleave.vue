@@ -148,10 +148,11 @@ export default {
             let result = await axios
               .post("http://localhost:8000/api/report",formData )
               .then(r => {
-                console.log(r);
+                alert('Add Success');
                 return r;
               })
               .catch(err => {
+                  alert('Error');
                 console.log(err);
               });
             // this.path ='http://localhost:8000'+result.data.path;

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1><UserComp></UserComp></h1>
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img src="@/assets/igg.png" alt="IGEARGEEK" >
   </div>
 </template>
 

@@ -30,6 +30,14 @@ class WorklateController extends Controller
         return $reportwork;
     }
 
+    public function getallworklate(){
+        $reportwork = DB::table('worklates')
+            ->join('users', 'worklates.employee_id', '=', 'users.id')
+            ->select('users.name', 'worklates.*')
+            ->get();
+        return $reportwork;
+    }
+
     public function getreportworklate($id){
         $report = Worklates::where('employee_id',$id)->get();
         return $report;

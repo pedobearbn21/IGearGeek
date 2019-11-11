@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div style="background:#F9FCC7;height:100vh;">
         <v-list-item>
             <v-list-item-content>
-            <v-list-item-title><div v-if='user.role ==`guest`'>Guest</div></v-list-item-title>
+            <v-list-item-title><h3 class="text-center"><div v-if='user.user'>{{ user.user.name }}</div></h3></v-list-item-title>
             </v-list-item-content>
         </v-list-item>
 
@@ -80,6 +80,18 @@
                                     <router-link to="/"><button @click="logout">logout</button></router-link>
                                 </div>
                                 <div v-else-if =" user.role == 'admin' ">
+                                    <router-link to="/history">History</router-link> 
+                                </div>
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                        <v-list-item-icon>
+                            <v-icon></v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                            <v-list-item-title>
+                                <div v-if =" user.role == 'admin' ">
                                     <router-link to="/"><button @click="logout">logout</button></router-link> 
                                 </div>
                             </v-list-item-title>
@@ -145,8 +157,8 @@ export default {
     },
     methods: {
         ...call("user/*"),
-        logout(){
-            this.logouted();
+        async logout(){
+            await this.logouted();
         },
     }
 }

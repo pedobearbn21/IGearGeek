@@ -72,6 +72,7 @@ export default {
     ...call("user/*"),
     signup: async function(){
         let registerdata = await this.register(this.form);
+        alert('Register Success');
         this.$router.push({ name: "login" });
     }
   }

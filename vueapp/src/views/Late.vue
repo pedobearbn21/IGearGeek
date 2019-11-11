@@ -91,7 +91,7 @@ export default {
             let result = await axios
                 .post('http://localhost:8000/api/sentlate',dataform)
                 .then(r=>{
-                    console.log(r);
+                    alert('Add Success');
                 });
         }
     },

@@ -34,7 +34,6 @@ const actions = {
     let result = axios
       .post("http://localhost:8000/api/auth/register", dataform)
       .then(r => {
-        console.log(r.data);
         state.user = r.data;
         return r.data;
       })
@@ -47,6 +46,7 @@ const actions = {
     state.user = { user: null,
                     role: 'guest'
                   };
+    alert('Logged Out');
     // let result = axios
     //   .post("http://localhost:8000/api/auth/logout")
     //   .then(r => {
@@ -61,7 +61,6 @@ const actions = {
     if(res){
       state.user = JSON.parse(localStorage.getItem('user'));
     }
-    console.log(state.user);
   }
 };
 const getters = {};
