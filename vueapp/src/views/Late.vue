@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-        <h2>ส่งคำขอเข้างานสาย</h2>
+        
         <v-card class="container">
+            <h2>ส่งคำขอเข้างานสาย</h2>
         <v-row>
             <v-col cols='8'>
             <v-dialog

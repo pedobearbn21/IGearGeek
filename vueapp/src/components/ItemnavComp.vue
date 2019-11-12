@@ -1,14 +1,11 @@
 <template>
     <div style="background:#F9FCC7;height:100vh;">
-        <v-list-item>
-            <v-list-item-content>
-            <v-list-item-title><h3 class="text-center"><div v-if='user.user'>{{ user.user.name }}</div></h3></v-list-item-title>
+        <v-list-item style="background: #1F5769;height:9%;">
+            <v-list-item-content >
+            <v-list-item-title><h3 class="text-center"><div v-if='user.user' style="color:yellow;">{{ user.user.name }}</div></h3></v-list-item-title>
             </v-list-item-content>
         </v-list-item>
-
-            <v-divider></v-divider>
-
-
+            <!-- <v-divider style="background: #1F5769;"></v-divider> -->
             <v-list>
                 <v-list-item-group v-model="model" mandatory color="indigo">
                     <v-list-item>

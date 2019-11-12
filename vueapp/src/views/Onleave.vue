@@ -1,7 +1,8 @@
 <template>
     <v-container>
-        <h2>ส่งคำขอลา</h2><br>
+        
         <v-card class="container">
+            <h2>ส่งคำขอลา</h2>
         <v-row>
             <div class="col">
                 <v-select
